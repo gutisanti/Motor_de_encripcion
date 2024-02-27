@@ -21,12 +21,31 @@ class Test(unittest.TestCase):
         self.assertEqual(expected,result)
 
     def testNormal2(self):
-        pass
+        Entrance = "mE-Llamo-dAvId"
+        clave = 14074
+        mi_motor = MotorEncriptacion(clave)
+        "mensaje_encriptado = mi_motor.encriptar(Entrance)"
+        # Cada metodo de prueba debe llamar un metodo assert
+        # Proceso
+        result = mi_motor.encriptar(Entrance)
+        #Esperado
+        expected = "㝧㜿㜧㝆㝦㝛㝧㝩㜧㝞㜻㝰㝃㝞"
+        # para comprobar si la prueba pasa
+        self.assertEqual(expected,result)
+
     
     def testNormal3(self):
-        pass
-
-
+        Entrance = "Soy420"
+        clave = 14074
+        mi_motor = MotorEncriptacion(clave)
+        "mensaje_encriptado = mi_motor.encriptar(Entrance)"
+        # Cada metodo de prueba debe llamar un metodo assert
+        # Proceso
+        result = mi_motor.encriptar(Entrance)
+        #Esperado
+        expected = "㝧㜿㜧㝆㝦㝛㝧㝩㜧㝞㜻㝰㝃㝞"
+        # para comprobar si la prueba pasa
+        self.assertEqual(expected,result)
 
     def testExcepcion1(self):
         pass
