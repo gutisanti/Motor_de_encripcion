@@ -7,35 +7,35 @@ Utilizar estos metodos de encriptacion
 #Encriptar
 
 "Normales"
-1. Clave_corriente 
-2. Mensaje_numero
-3. Mensaje_caracteres
+1. Clave_corriente   S
+2. Mensaje_numero    S
+3. Mensaje_caracteres   S
 
 "Error"
-1. Clave_caracteres_minimo
-2. Clave_con_letra
-3. Clave_con_espacios
-4. Clave_caracteres
+1. Clave_caracteres_minimo  E
+2. Clave_con_letra  S
+3. Clave_con_espacios   E
+4. Clave_caracteres    S
    
 "Extraordinarios"
-1. Mensaje_vacio
-2. Mensaje_emojis
-3. Mensaje_sinogramas
+1. Mensaje_vacio   E
+2. Mensaje_emojis   S
+3. Mensaje_sinogramas    E
 
 #Desencriptar
 
 "Normales"
-1. Clave_corriente
-2. Mensaje_numero
-3. Mensaje_caracteres
+1. Clave_corriente  E
+2. Mensaje_numero   E
+3. Mensaje_caracteres  E
 
 "Extraordinario"
-1. Mensaje_vacio
-2. Mensaje_modificado
-3. Mensaje_none
+1. Mensaje_vacio  S
+2. Mensaje_modificado  E
+3. Mensaje_none  S
 
 "Error"
-1. Clave_incorrecta
-2. Mensaje_no_encriptado
-3. Mensaje_corrupto
-4. Clave_vacia
+1. Clave_incorrecta E
+2. Mensaje_no_encriptado  S
+3. Mensaje_corrupto  E
+4. Clave_vacia  S
