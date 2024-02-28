@@ -63,6 +63,22 @@ class Test(unittest.TestCase):
         
     
     def testEmojiMessage( self ):
+         # Mensaje con emojis
+        Entrance = "😊😊😊😊"
+        clave = 1234
+
+        # Crear el motor de encriptación
+        mi_motor = MTO.MotorEncriptacion(clave)
+
+        # Proceso de encriptación
+        mensaje_encriptado = mi_motor.encriptar(Entrance)
+
+        # Proceso de desencriptación
+        mensaje_desencriptado = mi_motor.desencriptar(mensaje_encriptado)
+
+        # Comprobar que el mensaje desencriptado sea igual al original
+        self.assertEqual(mensaje_desencriptado, Entrance)
+
         pass
     def testMessageSinograms(self):
         pass
