@@ -20,7 +20,7 @@ Utilizar estos metodos de encriptacion
 "Extraordinarios"
 1. Mensaje_vacio   E R
 2. Mensaje_emojis   S
-3. Mensaje_sinogramas    E
+3. Mensaje_sinogramas    E R
 
 #Desencriptar
 
