@@ -1,5 +1,5 @@
 import os
-from MTO import MotorEncriptacion
+import MTO
 
 def obtener_entero(mensaje):
     while True:
@@ -20,8 +20,10 @@ def main():
     # Realizar la operación seleccionada por el usuario
     if opcion == "E":
         mensaje = input("Ingrese el mensaje: ")
+        if len(mensaje) == 0:
+            raise MTO.EmptyMessage()
         clave = obtener_entero("Ingrese la clave (número entero): ")
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         mensaje_encriptado = mi_motor.encriptar(mensaje)
         print("Mensaje encriptado:", mensaje_encriptado)
         
@@ -47,7 +49,7 @@ def main():
 
         if clave_ingresada == clave_almacenada:
             mensaje_encriptado = lineas[0].split(":")[1].strip()
-            mi_motor = MotorEncriptacion(clave_almacenada)
+            mi_motor = MTO.MotorEncriptacion(clave_almacenada)
             mensaje_desencriptado = mi_motor.desencriptar(mensaje_encriptado)
             print("Mensaje desencriptado:", mensaje_desencriptado)
         else:

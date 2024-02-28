@@ -1,7 +1,7 @@
 # Todas las prueba sunitarias importan la biblioteca unittest
 import unittest
 # Las pruebas importan los modulos que hacen el trabajo
-from MTO import MotorEncriptacion
+import MTO
 
 # descediente de unittest.TestCase
 class Test(unittest.TestCase):
@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
     def testNormal1(self):
         Entrance = "Hola Mundo"
         clave = 1234
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
         # Cada metodo de prueba debe llamar un metodo assert
         # Proceso
@@ -23,7 +23,7 @@ class Test(unittest.TestCase):
     def testNormal2(self):
         Entrance = "mE-Llamo-dAvId"
         clave = 14074
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
         # Cada metodo de prueba debe llamar un metodo assert
         # Proceso
@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
     def testNormal3(self):
         Entrance = "420"
         clave = 14074
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
         # Cada metodo de prueba debe llamar un metodo assert
         # Proceso
@@ -48,7 +48,19 @@ class Test(unittest.TestCase):
         self.assertEqual(expected,result)
 
     def testEmptyMessage(self):
-        pass
+        Entrance = " "
+        clave = 14074
+        mi_motor = MTO.MotorEncriptacion(clave)
+        
+        try:
+            result = mi_motor.encriptar(Entrance)
+            self.assertEqual(result," ")
+        
+        except MTO.EmptyMessage:
+            print("Expeción Ocurrida")
+
+        # para comprobar si la prueba pasa
+        
     
     def testEmojiMessage( self ):
         pass
@@ -73,7 +85,7 @@ class Test(unittest.TestCase):
     def testCurrentKey(self):
         Entrance = "ԚՁԾԳӲԟՇՀԶՁ"
         clave = 1234
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
 
         result = mi_motor.desencriptar(Entrance)
@@ -85,7 +97,7 @@ class Test(unittest.TestCase):
     def testMessageNumber(self):
         Entrance = "ԂԃԄԃԂ"
         clave = 1232
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
         # Cada metodo de prueba debe llamar un metodo assert
         # Proceso
@@ -99,7 +111,7 @@ class Test(unittest.TestCase):
     def testCharacterMessage(self):
         Entrance = "ਣਰ੕ਤਝવ"
         clave = 2550
-        mi_motor = MotorEncriptacion(clave)
+        mi_motor = MTO.MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
         # Cada metodo de prueba debe llamar un metodo assert
         # Proceso
@@ -120,7 +132,7 @@ def testModifiedEncryptedMessage(self):
 
     # Clave y motor de encriptación
     clave = 1232
-    mi_motor = MotorEncriptacion(clave)
+    mi_motor = MTO.MotorEncriptacion(clave)
 
     # Proceso de desencriptación
     result = mi_motor.desencriptar(modified_encrypted_message)

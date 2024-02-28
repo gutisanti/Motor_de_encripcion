@@ -1,3 +1,6 @@
+
+class EmptyMessage(Exception):
+    """No se puede encriptar un mensaje vacio"""
 class MotorEncriptacion:
     def __init__(self, clave):
         self.clave = clave
