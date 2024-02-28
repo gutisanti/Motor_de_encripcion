@@ -35,7 +35,7 @@ class Test(unittest.TestCase):
 
     
     def testNormal3(self):
-        Entrance = "Soy420"
+        Entrance = "420"
         clave = 14074
         mi_motor = MotorEncriptacion(clave)
         "mensaje_encriptado = mi_motor.encriptar(Entrance)"
