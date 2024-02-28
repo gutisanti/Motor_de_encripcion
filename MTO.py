@@ -3,7 +3,19 @@ class EmptyMessage(Exception):
     """No se puede encriptar un mensaje vacio"""
 class MotorEncriptacion:
     def __init__(self, clave):
-        self.clave = clave
+
+        if isinstance(clave, int):
+            self.clave = clave
+        elif isinstance(clave, str):
+            self.clave = self.obtener_valor_clave(clave)
+        else:
+            raise ValueError("La clave debe ser un número entero o una cadena de letras.")
+
+
+    def obtener_valor_clave(self, clave):
+        # Convertir cada letra de la clave a su valor numérico y sumarlos
+        return sum(ord(letra) for letra in clave)
+
 
     def encriptar(self, mensaje):
         mensaje_encriptado = ""
