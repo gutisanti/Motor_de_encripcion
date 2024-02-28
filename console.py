@@ -20,8 +20,6 @@ def main():
     # Realizar la operación seleccionada por el usuario
     if opcion == "E":
         mensaje = input("Ingrese el mensaje: ")
-        if len(mensaje) == 0:
-            raise MTO.EmptyMessage()
         clave = obtener_entero("Ingrese la clave (número entero): ")
         mi_motor = MTO.MotorEncriptacion(clave)
         mensaje_encriptado = mi_motor.encriptar(mensaje)
