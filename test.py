@@ -72,7 +72,7 @@ class Test(unittest.TestCase):
         # Comprobar que el mensaje desencriptado sea igual al original
         self.assertEqual(mensaje_desencriptado, Entrance)
 
-        pass
+        
     def testMessageSinograms(self):
         # Mensajes para probar
         Entrance = "汉字"
@@ -105,7 +105,7 @@ class Test(unittest.TestCase):
         expected_error_message = "La clave no puede contener solo letras."
         self.assertEqual(expected_error_message, str(context.exception))
 
-        pass
+        
         
     def KeyWithSpaces( self ):
         clave_con_espacios = "12 34 56"
@@ -132,7 +132,7 @@ class Test(unittest.TestCase):
         # Asegurarse de que la prueba general también pase
         self.assertTrue(True)
 
-        pass
+        
 
     #Casos de prueba de Desencripción
     
@@ -214,7 +214,7 @@ class Test(unittest.TestCase):
         # Verificar que la excepción tiene el mensaje esperado
         expected_error_message = "El mensaje no ha sido encriptado previamente o está vacío."
         self.assertEqual(expected_error_message, str(context.exception))
-        pass
+        
     def NoneMessage(self):
         pass
 
@@ -248,7 +248,7 @@ class Test(unittest.TestCase):
         expected_error_message = "El mensaje no ha sido encriptado previamente."
         self.assertEqual(expected_error_message, str(context.exception))
             
-        pass
+        
         
     def testCorruptMessage( self ):
         # Mensaje encriptado corrupto o modificado
@@ -266,7 +266,7 @@ class Test(unittest.TestCase):
         # Verificar que la excepción tiene el mensaje esperado
         expected_error_message = "El mensaje encriptado está corrupto o ha sido modificado."
         self.assertEqual(expected_error_message, str(context.exception))
-        pass
+       
 
     def testEmptyKey( self ):
         # Mensaje encriptado
@@ -286,7 +286,7 @@ class Test(unittest.TestCase):
 
         # Comprobar que el mensaje desencriptado sea igual al original
         self.assertEqual(expected, mensaje_desencriptado)
-        pass
+        
 
         
 
