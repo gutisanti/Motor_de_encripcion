@@ -2,7 +2,7 @@
 import unittest
 # Las pruebas importan los modulos que hacen el trabajo
 import MTO
-import MotorEncriptacion
+
 
 # descediente de unittest.TestCase
 class Test(unittest.TestCase):
@@ -108,10 +108,14 @@ class Test(unittest.TestCase):
         pass
         
     def KeyWithSpaces( self ):
-        pass
+        clave_con_espacios = "12 34 56"
+        
+        # Se espera que los espacios sean eliminados y la clave sea "123456"
+        self.mi_motor.KeyWithSpaces(clave_con_espacios)
+        self.assertEqual(self.mi_motor.clave, "123456")
 
     def testKeyWithSpecialCharacters( self ):
-         # Mensaje original
+        # Mensaje original
         Entrance = "Hello World"
 
         # Key con solo caracteres especiales
@@ -190,8 +194,8 @@ class Test(unittest.TestCase):
         # Comprobación
         # Se espera que la desencriptación falle o produzca un resultado diferente
         self.assertNotEqual("23432", result)
-   
-   #DESENCRIPTAR#
+
+    #DESENCRIPTAR#
     
     def test_EmptyMessage( self ):
         # Mensaje encriptado vacío
@@ -215,8 +219,17 @@ class Test(unittest.TestCase):
         pass
 
 
-    def testIncorectKey( self ):
-        pass
+    def testIncorectKey(self):
+        Entrance = "see you"
+        clave = 1476
+        clave_incorrecta = "35665"
+        try:
+            mi_motor = MTO.MotorEncriptacion(clave_incorrecta)  # Intentamos crear una instancia con la clave incorrecta
+        except MTO.IncorrectKey as e:
+            print("Error:", e)  # Se espera que se levante la excepción IncorrectKey
+        else:
+            self.fail("Se esperaba una excepción IncorrectKey pero no se lanzó")
+
 
     def testUnencryptedmessage( self ):
         # Mensaje no encriptado
@@ -238,7 +251,7 @@ class Test(unittest.TestCase):
         pass
         
     def testCorruptMessage( self ):
-         # Mensaje encriptado corrupto o modificado
+        # Mensaje encriptado corrupto o modificado
         encrypted_message = "MensajeModificado"
 
         # Clave válida
@@ -263,7 +276,7 @@ class Test(unittest.TestCase):
         key = 9876
 
         # Crear el motor de encriptación
-        mi_motor = MotorEncriptacion(key)
+        mi_motor = MTO.MotorEncriptacion(key)
 
         # Proceso de desencriptación
         mensaje_desencriptado = mi_motor.desencriptar(encrypted_message)
