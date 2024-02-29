@@ -28,11 +28,6 @@ class MotorEncriptacion:
         else:
 
             raise ValueError("La clave debe ser un número entero o una cadena de letras.")
-        if len(str(clave)) < 4:
-            raise MinimunCharacters
-
-            raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
-
 
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
@@ -41,6 +36,9 @@ class MotorEncriptacion:
 
     def obtener_valor_clave(self, clave):
         # Convertir cada letra de la clave a su valor numérico y sumarlos
+        if len(str(clave)) < 4:
+            raise MinimunCharacters()
+
         return sum(ord(letra) for letra in clave)
 
     def encriptar(self, mensaje):
@@ -63,8 +61,6 @@ class MotorEncriptacion:
                 mensaje_desencriptado += chr(ord(caracter) - self.clave)
             return mensaje_desencriptado
         except ValueError:
-
-            raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
 
             raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
 
