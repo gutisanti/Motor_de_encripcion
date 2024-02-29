@@ -49,13 +49,11 @@ class Test(unittest.TestCase):
         self.assertEqual(expected,result)
 
     def testEmptyMessage(self):
-        Entrance = " "
+        Entrance = ""
         clave = 14074
         mi_motor = MTO.MotorEncriptacion(clave)
         
         self.assertRaises(MTO.EmptyMessage, mi_motor.encriptar, Entrance)
-        # para comprobar si la prueba pasa
-        
     
     def testEmojiMessage( self ):
         # Mensaje con emojis
@@ -76,11 +74,21 @@ class Test(unittest.TestCase):
 
         pass
     def testMessageSinograms(self):
-        pass
+        # Mensajes para probar
+        Entrance = "汉字"
+        
+        # Verifica si hay sinogramas en los mensajes
+        self.assertTrue(MTO.has_sinogram(Entrance))
+
 
 
     def MinimunCharacterKey( self ):
-        pass
+        Entrance = "Hi bae"
+        clave = 140
+        mi_motor = MTO.MotorEncriptacion(clave)
+        
+        self.assertRaises(MTO.EmptyMessage, mi_motor.encriptar, Entrance)
+    
 
     def testKeyWithLetters( self):# Mensaje original
         # Mensaje original
