@@ -84,7 +84,7 @@ class Test(unittest.TestCase):
 
 
 
-    def MinimunCharacterKey( self ):
+    def testMinimunCharacterKey( self ):
         Entrance = "Hi bae"
         clave = 140
         mi_motor = MTO.MotorEncriptacion(clave)
@@ -109,7 +109,7 @@ class Test(unittest.TestCase):
 
         
         
-    def KeyWithSpaces( self ):
+    def testKeyWithSpaces( self ):
         clave_con_espacios = "12 34 56"
         
         # Se espera que los espacios sean eliminados y la clave sea "123456"
@@ -217,8 +217,22 @@ class Test(unittest.TestCase):
         expected_error_message = "El mensaje no ha sido encriptado previamente o está vacío."
         self.assertEqual(expected_error_message, str(context.exception))
         
-    def NoneMessage(self):
-        pass
+    def testNoneMessage(self):
+        # Mensaje encriptado para la cadena literal "none"
+        mensaje_encriptado_none = "ԚՁԾԳӲԟՇՀԶՁ"
+
+        # Clave válida
+        clave = 1234
+
+        # Crear el motor y desencriptar el mensaje "none"
+        mi_motor = MTO.MotorEncriptacion(clave)
+
+        # Desencriptar el mensaje "none" debería devolver la cadena "none"
+        mensaje_desencriptado_none = mi_motor.desencriptar(mensaje_encriptado_none)
+
+        # Verificar que el mensaje desencriptado coincide con la cadena original "none"
+        self.assertEqual("none", mensaje_desencriptado_none)
+
 
 
     def testIncorectKey(self):
