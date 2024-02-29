@@ -6,10 +6,10 @@ class EmptyMessage(Exception):
 class MessageSinograms(Exception):
     """No se pueden encriptar sinogramas"""
 
-class MinimunCharacters():
+class MinimunCharacters(Exception):
     """La clave debe contener 4 caracteres minimo"""
 
-class IncorrectKey():
+class IncorrectKey(Exception):
     """La clave esta incorrecta"""
 
 class MotorEncriptacion:
@@ -29,8 +29,7 @@ class MotorEncriptacion:
             self.clave = self.obtener_valor_clave(clave)
         else:
             raise ValueError("La clave debe ser un número entero o una cadena de letras.")
-        if len(str(clave)) < 4:
-            raise MinimunCharacters
+       
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
 

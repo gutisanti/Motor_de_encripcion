@@ -93,7 +93,7 @@ class Test(unittest.TestCase):
         try:
         # Crear el motor de encriptación
             mi_motor = MTO.MotorEncriptacion(clave)
-        except MTO.MinimunCharacters :
+        except MTO.MinimunCharacters:
             testOk = True
         self.assertTrue(testOk, "No se disparo lo esperado")
 
