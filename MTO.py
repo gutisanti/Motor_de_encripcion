@@ -2,8 +2,6 @@ import string
 
 class EmptyMessage(Exception):
     """No se puede encriptar un mensaje vacio"""
-<<<<<<< HEAD
-=======
 
 class MessageSinograms(Exception):
     """No se pueden encriptar sinogramas"""
@@ -14,7 +12,6 @@ class MinimunCharacters():
 class IncorrectKey():
     """La clave esta incorrecta"""
 
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
 class MotorEncriptacion:
     
     def __init__(self, clave):
@@ -29,19 +26,9 @@ class MotorEncriptacion:
                 raise ValueError("La clave no puede contener solo caracteres especiales.")
             self.clave = self.obtener_valor_clave(clave)
         else:
-<<<<<<< HEAD
-
-            raise ValueError("La clave debe ser un número entero o una cadena de letras.")
-        if len(str(clave)) < 4:
-            raise MinimunCharacters
-
-            raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
-
-=======
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
 
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
 
     def obtener_valor_clave(self, clave):
         # Convertir cada letra de la clave a su valor numérico y sumarlos
@@ -67,9 +54,6 @@ class MotorEncriptacion:
                 mensaje_desencriptado += chr(ord(caracter) - self.clave)
             return mensaje_desencriptado
         except ValueError:
-<<<<<<< HEAD
-            raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
-=======
             raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
 
 def has_sinogram(mensaje):
@@ -92,4 +76,3 @@ def has_sinogram(mensaje):
             if ord(caracter) >= start and ord(caracter) <= end:
                 return True
     return False
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626

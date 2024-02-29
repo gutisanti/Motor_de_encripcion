@@ -2,11 +2,6 @@
 import unittest
 # Las pruebas importan los modulos que hacen el trabajo
 import MTO
-<<<<<<< HEAD
-from MTO import MotorEncriptacion
-=======
-
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
 
 # descediente de unittest.TestCase
 class Test(unittest.TestCase):
@@ -301,21 +296,11 @@ class Test(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             mi_motor.desencriptar(encrypted_message)
 
-<<<<<<< HEAD
-        # Verificar que la excepción tiene el mensaje esperado
-        expected_error_message = "El mensaje no ha sido encriptado previamente o está vacío."
-        self.assertEqual(expected_error_message, str(context.exception))
-        pass
-=======
         # Mensaje original esperado (debería ser vacío)
         expected = ""
 
         # Comprobar que el mensaje desencriptado sea igual al original
         self.assertEqual(expected, mensaje_desencriptado)
-        
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
-
-        
 
 
 
