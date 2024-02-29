@@ -1,6 +1,13 @@
 
 class EmptyMessage(Exception):
     """No se puede encriptar un mensaje vacio"""
+
+class MessageSinograms(Exception):
+    """No se pueden encriptar sinogramas"""
+
+class MinimunCharacters():
+    """La clave debe contener 4 caracteres minimo"""
+
 class MotorEncriptacion:
     def __init__(self, clave):
 
@@ -10,7 +17,8 @@ class MotorEncriptacion:
             self.clave = self.obtener_valor_clave(clave)
         else:
             raise ValueError("La clave debe ser un número entero o una cadena de letras.")
-
+        if len(str(clave)) < 4:
+            raise MinimunCharacters
 
     def obtener_valor_clave(self, clave):
         # Convertir cada letra de la clave a su valor numérico y sumarlos
@@ -30,3 +38,24 @@ class MotorEncriptacion:
         for caracter_encriptado in mensaje_encriptado:
             mensaje += chr(ord(caracter_encriptado) - self.clave)
         return mensaje
+
+def has_sinogram(mensaje):
+    # Rangos Unicode de sinogramas
+    sinogram_ranges = [
+        (0x4E00, 0x9FFF),  # Rango básico de sinogramas comunes
+        (0x3400, 0x4DBF),  # Rango de sinogramas extendidos A
+        (0x20000, 0x2A6DF),  # Rango de sinogramas extendidos B
+        (0x2A700, 0x2B73F),  # Rango de sinogramas extendidos C
+        (0x2B740, 0x2B81F),  # Rango de sinogramas extendidos D
+        (0x2B820, 0x2CEAF),  # Rango de sinogramas extendidos E
+        (0x2CEB0, 0x2EBEF),  # Rango de sinogramas extendidos F
+        (0xF900, 0xFAFF),  # Rango de sinogramas compatibles con ideogramas CJK
+        (0x2F800, 0x2FA1F)  # Rango de sinogramas suplementarios
+    ]
+
+    # Verifica si alguno de los caracteres del mensaje es un sinograma
+    for caracter in mensaje:
+        for start, end in sinogram_ranges:
+            if ord(caracter) >= start and ord(caracter) <= end:
+                return True
+    return False
