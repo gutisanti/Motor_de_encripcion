@@ -17,11 +17,11 @@ class MotorEncriptacion:
                 raise ValueError("La clave no puede contener solo caracteres especiales.")
             self.clave = self.obtener_valor_clave(clave)
         else:
-<<<<<<< HEAD
+
             raise ValueError("La clave debe ser un número entero o una cadena de letras.")
         if len(str(clave)) < 4:
             raise MinimunCharacters
-=======
+
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
 
