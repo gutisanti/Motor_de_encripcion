@@ -50,21 +50,15 @@ class Test(unittest.TestCase):
 
     def testEmptyMessage(self):
         Entrance = " "
-        Key = 14074
-        mi_motor = MTO.MotorEncriptacion(Key)
+        clave = 14074
+        mi_motor = MTO.MotorEncriptacion(clave)
         
-        try:
-            result = mi_motor.encriptar(Entrance)
-            self.assertEqual(result," ")
-        
-        except MTO.EmptyMessage:
-            print("Expeción Ocurrida")
-
+        self.assertRaises(MTO.EmptyMessage, mi_motor.encriptar, Entrance)
         # para comprobar si la prueba pasa
         
     
     def testEmojiMessage( self ):
-         # Mensaje con emojis
+        # Mensaje con emojis
         Entrance = "😊😊😊😊"
         Key = 1234
 

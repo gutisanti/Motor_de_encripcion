@@ -25,6 +25,8 @@ class MotorEncriptacion:
 
     def encriptar(self, mensaje):
         mensaje_encriptado = ""
+        if len(mensaje) == 0:
+            raise EmptyMessage()
         for caracter in mensaje:
             mensaje_encriptado += chr(ord(caracter) + self.clave)
         return mensaje_encriptado
