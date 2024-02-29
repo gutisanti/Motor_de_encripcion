@@ -1,6 +1,8 @@
 import string
+
 class EmptyMessage(Exception):
-    """No se puede encriptar un mensaje vacio"""
+    """No se puede encriptar un mensaje vacío"""
+
 class MotorEncriptacion:
     
     def __init__(self, clave):
@@ -18,21 +20,20 @@ class MotorEncriptacion:
         else:
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
-
     def obtener_valor_clave(self, clave):
         # Convertir cada letra de la clave a su valor numérico y sumarlos
         return sum(ord(letra) for letra in clave)
 
     def encriptar(self, mensaje):
+        if not mensaje or not mensaje.strip():
+            raise EmptyMessage("No se puede encriptar un mensaje vacío.")
+        
         mensaje_encriptado = ""
-        if len(mensaje) == 0:
-            raise EmptyMessage()
         for caracter in mensaje:
             mensaje_encriptado += chr(ord(caracter) + self.clave)
         return mensaje_encriptado
 
     def desencriptar(self, mensaje_encriptado):
-
         if not mensaje_encriptado or not mensaje_encriptado.strip():
             raise ValueError("El mensaje no ha sido encriptado previamente o está vacío.")
 
