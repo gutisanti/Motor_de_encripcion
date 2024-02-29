@@ -37,7 +37,7 @@ class MotorEncriptacion:
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
 
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
+
 
     def obtener_valor_clave(self, clave):
         # Convertir cada letra de la clave a su valor numérico y sumarlos
@@ -88,4 +88,4 @@ def has_sinogram(mensaje):
             if ord(caracter) >= start and ord(caracter) <= end:
                 return True
     return False
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
+
