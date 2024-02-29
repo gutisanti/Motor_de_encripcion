@@ -20,28 +20,19 @@ class MotorEncriptacion:
         if isinstance(clave, int):
             self.clave = clave
         elif isinstance(clave, str):
+            if " " in clave:
+                raise ValueError("La clave no puede contener espacios.")
             if clave.isalpha():  # Verifica si la clave contiene solo letras
                 raise ValueError("La clave no puede contener solo letras.")
             elif set(clave).issubset(set(string.punctuation)):  # Verifica si la clave contiene solo caracteres especiales
                 raise ValueError("La clave no puede contener solo caracteres especiales.")
             self.clave = self.obtener_valor_clave(clave)
         else:
-
             raise ValueError("La clave debe ser un número entero o una cadena de letras.")
         if len(str(clave)) < 4:
             raise MinimunCharacters
-
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
-
-            raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
-
-
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
-
-    def obtener_valor_clave(self, clave):
-        # Convertir cada letra de la clave a su valor numérico y sumarlos
-        return sum(ord(letra) for letra in clave)
 
     def encriptar(self, mensaje):
         if not mensaje or not mensaje.strip():
@@ -52,10 +43,15 @@ class MotorEncriptacion:
             mensaje_encriptado += chr(ord(caracter) + self.clave)
         return mensaje_encriptado
 
-    def desencriptar(self, mensaje_encriptado):
-
+    def desencriptar(self, mensaje_encriptado, clave=None):
         if not mensaje_encriptado or not mensaje_encriptado.strip():
             raise ValueError("El mensaje no ha sido encriptado previamente o está vacío.")
+
+        if clave is None:
+            clave = self.clave  # Utiliza la clave guardada si no se proporciona una clave
+
+        if clave != self.clave:
+            raise ValueError("La clave proporcionada no coincide con la clave utilizada para encriptar el mensaje.")
 
         try:
             mensaje_desencriptado = ""
@@ -63,11 +59,14 @@ class MotorEncriptacion:
                 mensaje_desencriptado += chr(ord(caracter) - self.clave)
             return mensaje_desencriptado
         except ValueError:
-
             raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
 
-            raise ValueError("El mensaje encriptado está corrupto o ha sido modificado.")
-
+    def obtener_valor_clave(self, clave):
+        # Convertir cada letra de la clave a su valor numérico y sumarlos
+        if len(clave) < 4:
+            raise MinimunCharacters()
+        return  sum(ord(letra) for letra in clave)
+    
 def has_sinogram(mensaje):
     # Rangos Unicode de sinogramas
     sinogram_ranges = [
@@ -88,4 +87,4 @@ def has_sinogram(mensaje):
             if ord(caracter) >= start and ord(caracter) <= end:
                 return True
     return False
->>>>>>> 3acb493f93ff61519ee12da2646d571e4419d626
+

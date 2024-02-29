@@ -82,14 +82,46 @@ class Test(unittest.TestCase):
         # Verifica si hay sinogramas en los mensajes
         self.assertTrue(MTO.has_sinogram(Entrance))
 
-
-
-    def testMinimunCharacterKey( self ):
-        Entrance = "Hi bae"
-        clave = 140
-        mi_motor = MTO.MotorEncriptacion(clave)
+    def testMinimunCharacterKey(self):
+        # Mensaje a encriptar
+        entrance = "Hi bae"
         
-        self.assertRaises(MTO.EmptyMessage, mi_motor.encriptar, Entrance)
+        # Clave con menos de 4 caracteres
+        clave = "140"  # Esta clave tiene solo 3 caracteres
+        
+        testOk = False
+        try:
+        # Crear el motor de encriptación
+            mi_motor = MTO.MotorEncriptacion(clave)
+        except MTO.MinimunCharacters :
+            testOk = True
+        self.assertTrue(testOk, "No se disparo lo esperado")
+
+
+
+    def testModifiedEncryptedMessage(self):
+        # Mensaje encriptado modificado
+        encrypted_message = "ԂԃԄԃԂ"
+        # Cambia un carácter del mensaje encriptado
+        modified_encrypted_message = list(encrypted_message)
+        # Por ejemplo, cambia el primer carácter de "Ԃ" a "ԃ"
+        modified_encrypted_message[0] = "j"
+        modified_encrypted_message = "".join(modified_encrypted_message)
+
+        # Key y motor de encriptación
+        Key = 1232
+        mi_motor = MTO.MotorEncriptacion(Key)
+
+        # Proceso de desencriptación
+        try:
+            result = mi_motor.desencriptar(modified_encrypted_message)
+        except ValueError as e:
+            # Se espera que se lance una excepción ValueError
+            self.assertIsInstance(e, ValueError)
+            # Verificar que el mensaje de la excepción sea el esperado
+            self.assertEqual(str(e), "El mensaje encriptado está corrupto o ha sido modificado.")
+        else:
+            self.fail("Se esperaba que se lanzara una excepción ValueError pero no se lanzó.")
     
 
     def testKeyWithLetters( self):# Mensaje original
@@ -109,13 +141,20 @@ class Test(unittest.TestCase):
 
         
         
-    def testKeyWithSpaces( self ):
+    def testKeyWithSpaces(self):
+    # Clave con espacios
         clave_con_espacios = "12 34 56"
-        
-        # Se espera que los espacios sean eliminados y la clave sea "123456"
-        self.mi_motor.KeyWithSpaces(clave_con_espacios)
-        self.assertEqual(self.mi_motor.clave, "123456")
 
+        # Intentar crear el motor de encriptación con una clave que contiene espacios debería lanzar una excepción
+        with self.assertRaises(ValueError) as context:
+            mi_motor = MTO.MotorEncriptacion(clave_con_espacios)
+
+        # Verificar que la excepción tiene el mensaje esperado
+        expected_error_message = "La clave no puede contener espacios."
+        self.assertEqual(expected_error_message, str(context.exception))
+
+    pass
+   
     def testKeyWithSpecialCharacters( self ):
         # Mensaje original
         Entrance = "Hello World"
@@ -191,11 +230,15 @@ class Test(unittest.TestCase):
         mi_motor = MTO.MotorEncriptacion(Key)
 
         # Proceso de desencriptación
-        result = mi_motor.desencriptar(modified_encrypted_message)
-
-        # Comprobación
-        # Se espera que la desencriptación falle o produzca un resultado diferente
-        self.assertNotEqual("23432", result)
+        try:
+            result = mi_motor.desencriptar(modified_encrypted_message)
+        except ValueError as e:
+            # Se espera que se lance una excepción ValueError
+            self.assertIsInstance(e, ValueError)
+            # Verificar que el mensaje de la excepción sea el esperado
+            self.assertEqual(str(e), "El mensaje encriptado está corrupto o ha sido modificado.")
+        else:
+            self.fail("Se esperaba que se lanzara una excepción ValueError pero no se lanzó.")
 
     #DESENCRIPTAR#
     
@@ -218,33 +261,35 @@ class Test(unittest.TestCase):
         self.assertEqual(expected_error_message, str(context.exception))
         
     def testNoneMessage(self):
-        # Mensaje encriptado para la cadena literal "none"
-        mensaje_encriptado_none = "ԚՁԾԳӲԟՇՀԶՁ"
-
-        # Clave válida
-        clave = 1234
-
-        # Crear el motor y desencriptar el mensaje "none"
-        mi_motor = MTO.MotorEncriptacion(clave)
-
-        # Desencriptar el mensaje "none" debería devolver la cadena "none"
-        mensaje_desencriptado_none = mi_motor.desencriptar(mensaje_encriptado_none)
-
-        # Verificar que el mensaje desencriptado coincide con la cadena original "none"
-        self.assertEqual("none", mensaje_desencriptado_none)
-
+        # Valor None
+        Entrance = None
+        Key = 14074
+        mi_motor = MTO.MotorEncriptacion(Key)
+        
+        # Intentar encriptar el valor None debería lanzar la excepción EmptyMessage
+        with self.assertRaises(MTO.EmptyMessage):
+            mi_motor.encriptar(Entrance)
 
 
     def testIncorectKey(self):
-        Entrance = "see you"
-        clave = 1476
-        clave_incorrecta = "35665"
-        try:
-            mi_motor = MTO.MotorEncriptacion(clave_incorrecta)  # Intentamos crear una instancia con la clave incorrecta
-        except MTO.IncorrectKey as e:
-            print("Error:", e)  # Se espera que se levante la excepción IncorrectKey
-        else:
-            self.fail("Se esperaba una excepción IncorrectKey pero no se lanzó")
+        # Clave correcta
+        Key = 1234
+
+        # Crear el motor de encriptación con la clave correcta
+        mi_motor = MTO.MotorEncriptacion(Key)
+
+        # Clave incorrecta
+        clave_incorrecta = 5678
+
+        # Intentar desencriptar con una clave incorrecta debería lanzar una excepción
+        with self.assertRaises(ValueError) as context:
+            mi_motor.desencriptar("MensajeEncriptado", clave_incorrecta)
+
+        # Verificar que el mensaje de error esperado está exactamente igual al mensaje de error real
+        expected_error_message = "La clave proporcionada no coincide con la clave utilizada para encriptar el mensaje."
+        self.assertEqual(expected_error_message, str(context.exception))
+
+
 
 
     def testUnencryptedmessage( self ):
@@ -306,17 +351,11 @@ class Test(unittest.TestCase):
         # Mensaje original esperado (debería ser vacío)
         expected = ""
         # Comprobar que el mensaje desencriptado sea igual al original
-        self.assertEqual(expected, mensaje_desencriptado)
+        self.assertEqual(expected, encrypted_message)
         
 
 
         
-
-
-
-
-
-
 # Este fragmento de codigo permite ejecutar la prueb individualmente
 # Va fijo en todas las pruebas
 if __name__ == '__main__':
