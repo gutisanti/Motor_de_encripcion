@@ -32,18 +32,6 @@ class MotorEncriptacion:
 
             raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
 
-
-       
-            raise TypeError("La clave debe ser un número entero o una cadena de caracteres.")
-
-
-    def obtener_valor_clave(self, clave):
-        # Convertir cada letra de la clave a su valor numérico y sumarlos
-        if len(str(clave)) < 4:
-            raise MinimunCharacters()
-
-        return sum(ord(letra) for letra in clave)
-
     def encriptar(self, mensaje):
         if not mensaje or not mensaje.strip():
             raise EmptyMessage("No se puede encriptar un mensaje vacío.")
