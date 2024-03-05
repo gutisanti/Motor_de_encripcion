@@ -5,20 +5,20 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_encriptar_desencriptar(self):
         # Caso de prueba para encriptar y luego desencriptar un mensaje
-        entrada = "Hola Mundo"
+        entrance = "Hola Mundo"
         clave = 1234
         mi_motor = MTO.MotorEncriptacion(clave)
 
         # Proceso de encriptación y desencriptación
-        mensaje_encriptado = mi_motor.encriptar(entrada)
+        mensaje_encriptado = mi_motor.encriptar(entrance)
         mensaje_desencriptado = mi_motor.desencriptar(mensaje_encriptado)
 
         # Comprobar que el mensaje desencriptado sea igual al original
-        self.assertEqual(entrada, mensaje_desencriptado)
+        self.assertEqual(entrance, mensaje_desencriptado)
 
     def test_encriptar_mensaje_vacio(self):
         # Caso de prueba para encriptar un mensaje vacío
-        entrada = ""
+        entrance = ""
         clave = 5678
         mi_motor = MTO.MotorEncriptacion(clave)
 
@@ -28,22 +28,22 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_desencriptar_mensaje_vacio(self):
         # Caso de prueba para desencriptar un mensaje vacío
-        mensaje_encriptado = ""
+        entrance = ""
         clave = 5678
         mi_motor = MTO.MotorEncriptacion(clave)
 
         # Proceso de desencriptación debería lanzar una excepción
         with self.assertRaises(ValueError):
-            mi_motor.desencriptar(mensaje_encriptado)
+            mi_motor.desencriptar(entrance)
 
     def test_emoji_message(self):
         # Caso de prueba para encriptar y desencriptar un mensaje con emojis
-        entrada = "😊😊😊😊"
+        entrance = "😊😊😊😊"
         clave = 1234
         mi_motor = MTO.MotorEncriptacion(clave)
 
         # Proceso de encriptación y desencriptación
-        mensaje_encriptado = mi_motor.encriptar(entrada)
+        mensaje_encriptado = mi_motor.encriptar(entrance)
         mensaje_desencriptado = mi_motor.desencriptar(mensaje_encriptado)
 
         # Comprobar que el mensaje desencriptado sea igual al original
@@ -51,14 +51,14 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_message_sinograms(self):
         # Caso de prueba para verificar sinogramas en un mensaje
-        entrada = "汉字"
+        entrance = "汉字"
 
         # Comprobar si hay sinogramas en el mensaje
-        self.assertTrue(MTO.has_sinogram(entrada))
+        self.assertTrue(MTO.has_sinogram(entrance))
 
     def test_minimun_character_key(self):
         # Caso de prueba para una clave con menos de 4 caracteres
-        entrada = "Hi bae"
+        entrance = "Hi bae"
         clave = "140"  # Clave con solo 3 caracteres
 
         # Proceso de creación del motor debería lanzar una excepción
@@ -90,7 +90,7 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_key_with_letters(self):
         # Caso de prueba para una clave con solo letras
-        entrada = "Hello World"
+        entrance = "Hello World"
         clave = "abcd"
 
         # Proceso de creación del motor debería lanzar una excepción
@@ -113,7 +113,7 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_key_with_special_characters(self):
         # Caso de prueba para una clave con solo caracteres especiales
-        entrada = "Hello World"
+        entrance = "Hello World"
         clave = "!@#$"
 
         # Proceso de creación del motor debería lanzar una excepción
@@ -190,23 +190,23 @@ class TestMotorEncriptacion(unittest.TestCase):
 
     def test_empty_message(self):
         # Caso de prueba para un mensaje vacío
-        entrada = ""
+        entrance = ""
         clave = 14074
         mi_motor = MTO.MotorEncriptacion(clave)
 
         # Proceso de encriptación debería lanzar una excepción
         with self.assertRaises(MTO.EmptyMessage):
-            mi_motor.encriptar(entrada)
+            mi_motor.encriptar(entrance)
 
     def test_none_message(self):
         # Caso de prueba para un mensaje None
-        entrada = None
+        entrance = None
         clave = 14074
         mi_motor = MTO.MotorEncriptacion(clave)
 
         # Proceso de encriptación debería lanzar una excepción
         with self.assertRaises(MTO.EmptyMessage):
-            mi_motor.encriptar(entrada)
+            mi_motor.encriptar(entrance)
 
     def test_incorrect_key(self):
         # Caso de prueba para una clave incorrecta
