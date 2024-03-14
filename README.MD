@@ -2,7 +2,15 @@
 Metodo de encriptacion utilizado
 AES(Rijindael)
 ------------------------------------------------------------------------------------------------------------------------------------
-Estudiar markdown
+Estudiar markdown en markdown cheat sheet
+y colocar los nombres de nososotros aqui
+----------------------------------------------------------------------------
+
+un bun readme: 
+-el proposito del proyecto: para que sirve el proyecto.
+-uso: como lo ejecuto? que ejecuto primero? explicar pensando en el ususario// el ususario lo ejecutara fuera de vs code, entonces 
+-autores: quien hizo este hermoso codigo?
+
 
 ##Encriptar
 
