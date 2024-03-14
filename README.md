@@ -2,8 +2,8 @@
 Metodo de encriptacion utilizado
 AES(Rijindael)
 ------------------------------------------------------------------------------------------------------------------------------------
-
-#Encriptar
+Estudiar markdown
+##Encriptar
 
 "Normales"
 1. Clave_corriente   S R
@@ -21,7 +21,7 @@ AES(Rijindael)
 2. Mensaje_emojis   S
 3. Mensaje_sinogramas    E R
 
-#Desencriptar
+##Desencriptar
 
 "Normales"
 1. Clave_corriente  E R
