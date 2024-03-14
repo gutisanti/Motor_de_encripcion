@@ -3,6 +3,7 @@ Metodo de encriptacion utilizado
 AES(Rijindael)
 ------------------------------------------------------------------------------------------------------------------------------------
 Estudiar markdown
+
 ##Encriptar
 
 "Normales"
