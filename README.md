@@ -4,38 +4,38 @@ AES(Rijindael)
 ------------------------------------------------------------------------------------------------------------------------------------
 Estudiar markdown
 
-##Encriptar
+# Encriptar
 
-"Normales"
-1. Clave_corriente   S R
-2. Mensaje_numero    S R
-3. Mensaje_caracteres   S R
+###  Normales
+1. Clave_corriente   
+2. Mensaje_numero    
+3. Mensaje_caracteres   
 
-"Error"
-1. Clave_caracteres_minimo  E
-2. Clave_con_letra  S
-3. Clave_con_espacios   E
-4. Clave_caracteres    S
+### Error
+1. Clave_caracteres_minimo 
+2. Clave_con_letra  
+3. Clave_con_espacios   
+4. Clave_caracteres    
    
-"Extraordinarios"
-1. Mensaje_vacio   E R
-2. Mensaje_emojis   S
-3. Mensaje_sinogramas    E R
+### Extraordinarios
+1. Mensaje_vacio   
+2. Mensaje_emojis   
+3. Mensaje_sinogramas    
 
-##Desencriptar
+# Desencriptar
 
-"Normales"
-1. Clave_corriente  E R
-2. Mensaje_numero   E R
-3. Mensaje_caracteres  E R
+### Normales
+1. Clave_corriente  
+2. Mensaje_numero   
+3. Mensaje_caracteres  
 
-"Extraordinario"
-1. Mensaje_vacio  S
-2. Mensaje_modificado  E
-3. Mensaje_none  S
+### Extraordinario
+1. Mensaje_vacio 
+2. Mensaje_modificado  
+3. Mensaje_none  
 
-"Error"
-1. Clave_incorrecta E
-2. Mensaje_no_encriptado  S
-3. Mensaje_corrupto  E
-4. Clave_vacia  S
+### Error
+1. Clave_incorrecta 
+2. Mensaje_no_encriptado  
+3. Mensaje_corrupto  
+4. Clave_vacia  
